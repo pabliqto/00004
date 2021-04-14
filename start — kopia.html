@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>Odliczanie dni do nowego roku </title>
+	
+	<script type="text/javascript" >
+
+
+	var day = prompt("Podaj dzien (1-31):", "")
+	var month = prompt("Podaj miesiac (1-12):", "")
+	var year =  prompt("Podaj rok:", "")
+
+	function a()
+	{
+	window.location.reload(true)
+	}
+	function odliczanie()
+	{
+		var dzisiaj = new Date();//obiekat Date 
+		
+		var dzien = dzisiaj.getDate();
+		var miesiac = dzisiaj.getMonth()+1;
+		var rok = dzisiaj.getFullYear();
+		var milisekundy = dzisiaj.getTime();
+		
+		var end = new Date(year, month-1, day);//data wydarzenia miesiac dzien rok
+		var endDzien = end.getDate();
+		var endMiesiac = end.getMonth()+1;
+		var endRok = end.getFullYear();
+		var milisekundy2 = end.getTime();
+		
+		var pozostalo = milisekundy2 - milisekundy; //milisekundy
+		var dni = Math.floor(pozostalo/86400000); //dni
+		var miesiace = Math.floor(pozostalo/2629700000); // miesiace
+		var sekn = Math.floor(pozostalo/1000); // sekundy
+		var lat = Math.floor(pozostalo/31556950000); // lata
+		var mina = Math.floor(pozostalo/60000); //minuty
+		var gog = Math.floor(pozostalo/3600000); // godziny
+	
+		document.getElementById("aktualnaData").innerHTML = "Aktualna data: "+dzien+"/"+miesiac+"/"+rok; 
+		document.getElementById("dataWydarzenia").innerHTML = "Data, do której odliczamy: "+endDzien+"/"+endMiesiac+"/"+endRok;
+
+
+		if (dni==1){ document.getElementById("dniDoWydarzenia").innerHTML =dni + " dzień";}
+		else {document.getElementById("dniDoWydarzenia").innerHTML =dni + " dni";}	
+
+		if (miesiace==1){ document.getElementById("mscDoWydarzenia").innerHTML =miesiace + " miesiąc";}
+		else if (miesiace==2||miesiace==3||miesiace==4) {document.getElementById("mscDoWydarzenia").innerHTML =miesiace + " miesiące";}		
+		else {document.getElementById("mscDoWydarzenia").innerHTML =miesiace + " miesięcy";}		
+		
+		if (sekn==1){ document.getElementById("seknDoWydarzenia").innerHTML =sekn + " sekunda";}
+		else if (sekn==2||sekn==3||sekn==4) {document.getElementById("seknDoWydarzenia").innerHTML =sekn + " sekundy";}		
+		else {document.getElementById("seknDoWydarzenia").innerHTML =sekn + " sekund";}		
+		
+		if (lat==1){ document.getElementById("latDoWydarzenia").innerHTML =lat + " rok";}
+		else if (lat==2||lat==3||lat==4) {document.getElementById("latDoWydarzenia").innerHTML =lat + " lata";}		
+		else {document.getElementById("latDoWydarzenia").innerHTML =lat + " lat";}		
+		
+		if (mina==1){ document.getElementById("minDoWydarzenia").innerHTML =mina + " minuta";}
+		else if (mina==2||mina==3||mina==4) {document.getElementById("minDoWydarzenia").innerHTML =mina + " minuty";}		
+		else {document.getElementById("minDoWydarzenia").innerHTML =mina + " minut";}		
+				
+
+		if (gog==1){ document.getElementById("gogDoWydarzenia").innerHTML =gog + " godzina";}
+		else if (gog==2||gog==3||gog==4) {document.getElementById("gogDoWydarzenia").innerHTML =gog + " godziny";}		
+		else {document.getElementById("gogDoWydarzenia").innerHTML =gog + " godzin";}		
+		
+		setTimeout("odliczanie()",1000);
+	}
+
+	</script>
+
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	
+</head>
+<body>
+
+<div id="container">
+<div id="topBar">
+Odliczacz czasu:</div>
+	
+	<div id="aktualnaData">...</div> 
+
+	<br/>
+	
+	<div id="dataWydarzenia">...</div>
+<br/>
+<br/>	
+		<div id="ch">Do podanej daty pozostało:</div> 
+	<br/>	
+		<div id="seknDoWydarzenia">...</div> 
+	<br/>	
+		<div id="minDoWydarzenia">...</div> 
+	<br/>	
+		<div id="gogDoWydarzenia">...</div> 
+	<br/>	
+	<div id="dniDoWydarzenia">...</div> 
+	<br/>	
+	
+	<div id="mscDoWydarzenia">...</div> 
+	<br/>
+		
+	<div id="latDoWydarzenia">...</div> <br/>
+
+	<br/>
+		
+	<script type="text/javascript" >
+	odliczanie();
+</script>
+<div id="footer">
+Odświesz stronę lub nacjiśnij <a onClick ="a();" id="click">tutaj</a>, by wpisać nową datę 
+</div>
+</div>
+</body>
+</html>
